@@ -1,5 +1,10 @@
 pipeline {
     agent any
+
+    tools{
+        docker 'Calculator-Docker'
+    }
+
     stages{
         stage('Checkout'){
             steps{
