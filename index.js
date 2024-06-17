@@ -32,7 +32,6 @@ app.post('/', (req, res) => {
     const operation = req.body.operator;
 
     // Perform the operation
-    // In the future i'm gonna change this to a more readable and maintainable solution
     let result;
     result = calculate(operation, n1, n2);
 
@@ -43,5 +42,7 @@ app.post('/', (req, res) => {
 
 // Start the server
 app.listen(port, () => {
-    console.log('Server is running on port 3000');
+    console.log('Server is running on port ' + port);
+    console.log('To view the calculator go to http://localhost:' + port + '/');
+    console.log('To stop the server press CTRL+C');
 });
