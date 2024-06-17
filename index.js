@@ -31,6 +31,7 @@ app.post('/', (req, res) => {
     const operation = req.body.operator;
 
     // Perform the operation
+    // In the future i'm gonna change this to a more readable and maintainable solution
     let result;
     switch (operation) {
         case 'add':
