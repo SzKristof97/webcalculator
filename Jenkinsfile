@@ -1,29 +1,26 @@
 pipeline {
-    agent any
-
-    stages{
-        stage('Checkout'){
-            steps{
-                checkout scm
-            }
+    agent {
+        docker {
+            image 'node:6-alpine'
+            args '-p 3000:3000'
         }
-        stage('Install Dependencies'){
-            steps{
+    }
+
+    environment {
+        CI = 'true'
+    }
+
+    stages {
+        stage('Build') {
+            steps {
                 sh 'npm install'
             }
         }
-        stage('Build Image'){
-            steps{
-                sh 'docker build -t node-app:1.0 .'
-            }
-        }
-        stage('Docker Push'){
-            steps{
-                withCredentials([usernamePassword(credentialsId: 'docker_cred', usernameVariable: 'DOCKERHUB_PASSWORD', passwordVariable: 'DOCKERHUB_USERNAME')]){
-                    sh 'docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD'
-                    sh 'docker tag node-app:1.0 szkristof97/calculator:1.0'
-                    sh 'docker push szkristof97/calculator:1.0'
-                }
+        stage('Deliver') {
+            steps {
+                sh './jenkins/scripts/deliver.sh'
+                input message: 'Finished using the web site?'
+                sh './jenkins/scripts/kill.sh'
             }
         }
     }
