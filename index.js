@@ -51,7 +51,7 @@ app.post('/', (req, res) => {
     }
 
     // Send the result back
-    res.send(`The result is: ${result}`);
+    res.send(result.toString());
 });
 
 
