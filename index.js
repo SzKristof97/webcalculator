@@ -4,6 +4,8 @@
 // Import the required modules
 const express = require('express');
 const bodyParser = require('body-parser');
+const calculate = require('./scripts/calculation');
+
 const app = express();
 
 // Const variables
@@ -14,7 +16,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // serve the css file
 app.use(express.static(__dirname + '/styles'));
-
 
 // Serve the index.html file
 app.get('/', (req, res) => {
@@ -32,22 +33,7 @@ app.post('/', (req, res) => {
 
     // Perform the operation
     let result;
-    switch (operation) {
-        case 'add':
-            result = n1 + n2;
-            break;
-        case 'subtract':
-            result = n1 - n2;
-            break;
-        case 'multiply':
-            result = n1 * n2;
-            break;
-        case 'divide':
-            result = n1 / n2;
-            break;
-        default:
-            result = 'Invalid operator';
-    }
+    result = calculate(operation, n1, n2);
 
     // Send the result back
     res.send(result.toString());

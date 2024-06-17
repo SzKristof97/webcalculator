@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "echo Build not needed for this project",
+    "test": "npx mocha tests/calculationTests.js",
     "start": "node index.js",
     "dev": "nodemon index.js"
   },
@@ -20,7 +21,8 @@
   "homepage": "https://github.com/SzKristof97/webcalculator#readme",
   "dependencies": {
     "body-parser": "^1.20.2",
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "mocha": "^10.4.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.3"
