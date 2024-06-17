@@ -4,6 +4,7 @@
   "description": "Simple calculator for my final exam",
   "main": "index.js",
   "scripts": {
+    "build": "echo Build not needed for this project",
     "start": "node index.js",
     "dev": "nodemon index.js"
   },
