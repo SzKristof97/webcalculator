@@ -4,6 +4,8 @@
 // Import the required modules
 const express = require('express');
 const bodyParser = require('body-parser');
+const calculate = require('./scripts/calculation');
+
 const app = express();
 
 // Const variables
@@ -14,7 +16,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // serve the css file
 app.use(express.static(__dirname + '/styles'));
-
 
 // Serve the index.html file
 app.get('/', (req, res) => {
@@ -33,22 +34,7 @@ app.post('/', (req, res) => {
     // Perform the operation
     // In the future i'm gonna change this to a more readable and maintainable solution
     let result;
-    switch (operation) {
-        case 'add':
-            result = n1 + n2;
-            break;
-        case 'sub':
-            result = n1 - n2;
-            break;
-        case 'mul':
-            result = n1 * n2;
-            break;
-        case 'div':
-            result = n1 / n2;
-            break;
-        default:
-            result = 'Invalid operation';
-    }
+    result = calculate(operation, n1, n2);
 
     // Send the result back
     res.send(result.toString());

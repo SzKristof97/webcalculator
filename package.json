@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "echo Build not needed for this project",
+    "test": "npx mocha tests/calculationTests.js",
     "start": "node index.js",
     "dev": "nodemon index.js"
   },
