@@ -13,6 +13,7 @@ pipeline {
         }
         stage('Deliver') {
             steps {
+                sh 'sudo su'
                 sh './jenkins/scripts/deliver.sh'
                 input message: 'Finished using the web site?'
                 sh './jenkins/scripts/kill.sh'
