@@ -31,31 +31,32 @@ app.post('/', (req, res) => {
     const operation = req.body.operator;
 
     // Perform the operation
-    // In the future i'm gonna change this to a more readable and maintainable solution
     let result;
     switch (operation) {
         case 'add':
             result = n1 + n2;
             break;
-        case 'sub':
+        case 'subtract':
             result = n1 - n2;
             break;
-        case 'mul':
+        case 'multiply':
             result = n1 * n2;
             break;
-        case 'div':
+        case 'divide':
             result = n1 / n2;
             break;
         default:
-            result = 'Invalid operation';
+            result = 'Invalid operator';
     }
 
     // Send the result back
-    res.send(`The result is: ${result}`);
+    res.send(result.toString());
 });
 
 
 // Start the server
 app.listen(port, () => {
-    console.log('Server is running on port 3000');
+    console.log('Server is running on port ' + port);
+    console.log('To view the calculator go to http://localhost:' + port + '/');
+    console.log('To stop the server press CTRL+C');
 });
