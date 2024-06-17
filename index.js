@@ -12,6 +12,9 @@ const port = 3000;
 // Use body-parser middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// serve the css file
+app.use(express.static(__dirname + '/styles'));
+
 
 // Serve the index.html file
 app.get('/', (req, res) => {
@@ -25,21 +28,21 @@ app.post('/', (req, res) => {
     const n2 = Number(req.body.num2);
 
     // Get the operation from the request
-    const operation = req.body.operation;
+    const operation = req.body.operator;
 
     // Perform the operation
     let result;
     switch (operation) {
-        case 'ADD':
+        case 'add':
             result = n1 + n2;
             break;
-        case 'SUB':
+        case 'sub':
             result = n1 - n2;
             break;
-        case 'MUL':
+        case 'mul':
             result = n1 * n2;
             break;
-        case 'DIV':
+        case 'div':
             result = n1 / n2;
             break;
         default:
