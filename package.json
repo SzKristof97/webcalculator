@@ -1,0 +1,27 @@
+{
+  "name": "calculator",
+  "version": "1.0.0",
+  "description": "Simple calculator for my final exam",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SzKristof97/webcalculator.git"
+  },
+  "author": "Szabó Kristóf",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SzKristof97/webcalculator/issues"
+  },
+  "homepage": "https://github.com/SzKristof97/webcalculator#readme",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.3"
+  }
+}
