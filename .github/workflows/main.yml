@@ -27,5 +27,6 @@ jobs:
       - name: Send task list to Discord
         run: |
           task_list=$(jq -r '.[] | select(.state != "closed") | "* \(.title)\n  - Description: \(.body // "No description")\n  - State: \(.state)\n  - URL: \(.html_url)\n"' task_list.json)
-          payload=$(jq -n --arg content "$task_list" '{content: $content}')
-          curl -H "Content-Type: application/json" -d "$payload" ${{ secrets.DISCORD_WEBHOOK_URL }}
+          embed=$(jq -n --arg description "$task_list" '{embeds: [{title: "Task List", description: $description, color: 3447003}]}')
+          echo "$embed" > payload.json
+          curl -H "Content-Type: application/json" -d @payload.json ${{ secrets.DISCORD_WEBHOOK_URL }}
