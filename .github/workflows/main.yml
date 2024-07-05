@@ -26,6 +26,4 @@ jobs:
       - name: Send task list to Discord
         run: |
           task_list=$(cat task_list.json | jq -r 'map(.title) | join("\n")')
-          curl -H "Content-Type: application/json" \
-          -d "{\"description\": \"**Task List:**\n$task_list\"}" \
-          ${{ secrets.DISCORD_WEBHOOK_URL }}
+          curl -H "Content-Type: application/json" -d "{\"description\": \"**Task List:**\n$task_list\"}" ${{ secrets.DISCORD_WEBHOOK_URL }}
