@@ -23,7 +23,9 @@ jobs:
 
           echo "Task list generated: "
           cat task_list.json
+
       - name: Send task list to Discord
         run: |
-          task_list=$(cat task_list.json | jq -r 'map(.title) | join("\n")')
-          curl -H "Content-Type: application/json" -d "{\"description\": \"**Task List:**\n$task_list\"}" ${{ secrets.DISCORD_WEBHOOK_URL }}
+          task_list=$(jq -r 'map(.title) | join("\n")' task_list.json)
+          payload=$(jq -n --arg content "**Task List:**\n$task_list" '{content: $content}')
+          curl -H "Content-Type: application/json" -d "$payload" ${{ secrets.DISCORD_WEBHOOK_URL }}
