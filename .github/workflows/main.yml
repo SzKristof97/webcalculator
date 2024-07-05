@@ -27,5 +27,5 @@ jobs:
         run: |
           task_list=$(cat task_list.json | jq -r 'map(.title) | join("\n")')
           curl -H "Content-Type: application/json" \
-          -d "{\"content\": \"**Task List:**\n$task_list\"}" \
+          -d "{\"description\": \"**Task List:**\n$task_list\"}" \
           ${{ secrets.DISCORD_WEBHOOK_URL }}
